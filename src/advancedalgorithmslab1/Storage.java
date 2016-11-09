@@ -56,7 +56,7 @@ public class Storage <T extends Comparable<T>> implements Stopwatch.Test {
     public int findElementUsingBinary(T element) {
         //Collections.sort(list);
         
-        /*int count;
+        int count;
         int low = 0;
         int high = list.size() - 1;
         while(low <= high) {
@@ -68,9 +68,9 @@ public class Storage <T extends Comparable<T>> implements Stopwatch.Test {
             } else {
                 low = count + 1;
             }
-        }*/
+        }
         
-        int count;
+        /*int count;
         int firstElement = 0;
         int lastElement = list.size() - 1;
         
@@ -87,7 +87,7 @@ public class Storage <T extends Comparable<T>> implements Stopwatch.Test {
                     return -1;
                 }
             }
-        }
+        }*/
         
         return -1;
     }
@@ -173,9 +173,9 @@ public class Storage <T extends Comparable<T>> implements Stopwatch.Test {
 
     @Override
     public void test() {
-        for(int i = 0; i < 500; i+=100) {
-            findElementUsingSequential((T) n);
-            //findElementUsingBinary((T) n);
+        for(int i = 0; i < 500; i+=1) {
+            //findElementUsingSequential((T) n);
+            findElementUsingBinary((T) n);
         }
     }
     
