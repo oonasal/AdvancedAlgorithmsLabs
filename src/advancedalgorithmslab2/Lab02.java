@@ -36,7 +36,7 @@ public class Lab02 {
             dict.put(empty, tableStr[i]);
             //System.out.println(tableStr[i]);
         }
-        System.out.println("Content of the dictionary:");
+        System.out.println("Content of the dictionary:\n");
         dict.printDictionary();
         
         /* try to search half of the strings from the dictionary */
@@ -72,7 +72,7 @@ public class Lab02 {
         dict.del(tableStr[N/2-1]);
         
         /* try to search again strings from the dictionary, first and the last should not be found*/
-        System.out.println("\n\nFirst and last search should fail, other should succeed:");
+        System.out.println("\nFirst and last search should fail, other should succeed:\n");
         for (int i = 0; i < N/2; i++) {
             j = i;
             search_element = tableStr[i];

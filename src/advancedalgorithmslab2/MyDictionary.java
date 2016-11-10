@@ -1,6 +1,4 @@
 package advancedalgorithmslab2;
-
-
 /**
  *
  * @author Oona
@@ -9,47 +7,40 @@ public class MyDictionary {
     
     private MyDictionaryList[] hashArray;
     
-    
     public MyDictionary(int n) {
           hashArray = new MyDictionaryList[n];
-          
           for(int i = 0; i < n; i++) {
               hashArray[i] = new MyDictionaryList();
           }
     }
     
+    //finds the element with the given key
     public Object get(String key) {
-        
         Object result = null;
         
         //find the index we need to check
         int index = hash(key) % hashArray.length;
         
         result = hashArray[index].get(key);
-        
         return result;
     }
     
+    //inserts an element into the hash table
     public int put(Object item, String key) {
-        
         int hashValue = hash(key);
         int index = hashValue % hashArray.length;
         hashArray[index].add(item, key);
-        
         return 0;
     }
     
+    //removes an element
     public int del(String key) {
-        
         int arrayIndex = hash(key) % hashArray.length;
-        
         int listIndex = hashArray[arrayIndex].indexOf(key);
-        
-        boolean removed = hashArray[arrayIndex].remove(listIndex);
-        
-        return 0;
+        return hashArray[arrayIndex].remove(listIndex);
     }
     
+    //prints out all the elements
     public void printDictionary() {
         for(int i = 0; i < hashArray.length; i++) {
             System.out.print(i + ". ");
@@ -67,15 +58,16 @@ public class MyDictionary {
         h = 0;
         for (int i = 0; i < str.length(); i++) h = MULTIPLIER * h + str.charAt(i);
         return h & Integer.MAX_VALUE;
-        
     } 
     
+    
+    
+    
     private class Node {
-        
         Node next;
         Object data;
         String key;
-
+        
         public Node(Object dataValue, String key) {
             next = null;
             data = dataValue;
@@ -95,13 +87,15 @@ public class MyDictionary {
         }
     }
     
+    
+    
+    
+    //custom linked list used for saving element pairs in the same bucket
     class MyDictionaryList {
- 
 	private int counter;
 	private Node head;
- 
-	public MyDictionaryList() {}
         
+        //adds an element into the list
         public void add(Object data, String key) {
             if (head == null) {
                 head = new Node(data, key);
@@ -129,15 +123,12 @@ public class MyDictionary {
                 current = head.getNext();
                 
                 while (current != null) {
-                    
                     if(current.getKey().equals(key)) {
                         return current;
                     }
-                    
                     if (current.getNext() == null){
                             return null;
                     }
-                    
                     current = current.getNext();
                 }
             }
@@ -145,47 +136,41 @@ public class MyDictionary {
 	}
  
 	// removes the element at the specified position in this list.
-	public boolean remove(int index) {
-            
+	public int remove(int index) {
             Node current = head;
             Node temp = head;
             
 		if(index == 0) {
                     if (head == null) {
-                        return false;
+                        return 0;
                     } else {
                         if (head.getNext() == null) {
                             head = null;
-                            return true;
+                            return 1;
                         } else {
                             head = head.getNext();
-                            return true;
+                            return 1;
                         }
                     }
                 }
- 
 		if (head != null) {
 			for (int i = 0; i < index; i++) {
 				if (current.getNext() == null) {
-					return false;
+					return 0;
                                 }
-                                
                                 temp = current;
- 
 				current = current.getNext();
-                                
                         }
                         Node n = current;
                         current = temp;
                         current.setNext(n.getNext());
-
 			counter--;
-			return true;
- 
+			return 1;
 		}
-		return false;
+		return 0;
 	}
         
+        //finds the index of the element with the given key
         public int indexOf(String key) {
             int index = 0;
             Node current = head;
@@ -200,7 +185,6 @@ public class MyDictionary {
             return -1;
         }
  
-	// returns the number of elements in this list.
 	public int size() {
 		return getCounter();
 	}
@@ -211,15 +195,11 @@ public class MyDictionary {
 
             if (head != null) {
                 Node current = head.getNext();
-                
                 while (current != null) {
-                    
                     output += "[" + current.getKey() + "]";
-                    
                     current = current.getNext();
                 }
             }
-            
             return output;
 	}
     }
